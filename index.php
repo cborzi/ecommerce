@@ -26,10 +26,8 @@ $app->get('/', function() {
 });
 
 $app->get('/admin', function() {
-    echo "passei aqui";
 	$page = new PageAdmin();
 	$page->setTpl("index");
-
 });
 
 
