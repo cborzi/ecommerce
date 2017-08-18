@@ -55,9 +55,16 @@ class User extends Model {
 			||
 			(bool)$_SESSION[User::SESSION]["inadmin"] !== $inadmin
 		)
+			var_dump($_SESSION);
+			//header("Location: /admin/login");
+			//exit;
 
-			header("Location: /admin/login");
-			exit;
+	}
+
+	public static function logout()
+	{
+
+		$_SESSION[User::SESSION] = NULL;
 
 	}
 
