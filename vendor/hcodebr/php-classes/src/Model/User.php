@@ -49,16 +49,18 @@ class User extends Model {
 
 		if( !isset($_SESSION[User::SESSION])
 			||
-			$_SESSION[User::SESSION]
+			!$_SESSION[User::SESSION]
 			||
 			!(int)$_SESSION[User::SESSION]["iduser"] > 0
 			||
 			(bool)$_SESSION[User::SESSION]["inadmin"] !== $inadmin
 		)
-			var_dump($_SESSION);
-			//header("Location: /admin/login");
-			//exit;
+		{
+			//var_dump($_SESSION);
+			header("Location: /admin/login");
+			exit;
 
+		}			
 	}
 
 	public static function logout()
