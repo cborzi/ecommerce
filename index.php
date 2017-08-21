@@ -8,20 +8,10 @@ use \Hcode\PageAdmin;
 use \Hcode\Model\User;
 
 $app = new Slim();
-
 $app->config('debug', true);
 
 $app->get('/', function() {
     
-    // teste de inicio do projeto
-	//echo "OK";
-
-	// teste da classe DB
-	//$sql = new Hcode\DB\sql();
-	//$results = $sql->select("SELECT * FROM tb_users");
-	//echo json_encode($results);
-
-	// Teste de páginas TPL
 	$page = new Page();
 	$page->setTpl("index");
 
@@ -65,6 +55,58 @@ $app->get('/admin/logout', function() {
 	header("Location: /admin/login");
 
 	exit;
+
+});
+
+$app->get('/admin/users', function() {
+
+	User::verifyLogin();
+
+	$users = User::ListAll();
+
+	$page = new PageAdmin();
+
+	$page->setTpl("users", array(
+		"users"=>$users
+	));
+
+});
+
+$app->get('/admin/users/create', function() {
+
+	User::verifyLogin();
+
+	$page = new PageAdmin();
+
+	$page->setTpl("users-create");
+
+});
+
+$app->get('/admin/users/:iduser/delete', function($iduser) {
+
+	User::verifyLogin();
+
+});
+
+$app->get('/admin/users/:iduser', function($iduser) {
+
+	User::verifyLogin();
+
+	$page = new PageAdmin();
+
+	$page->setTpl("users-update");
+
+});
+
+$app->post('/admin/create', function() {
+
+	User::verifyLogin();
+
+});
+
+$app->post('/admin/users/:iduser', function($iduser) {
+
+	User::verifyLogin();
 
 });
 

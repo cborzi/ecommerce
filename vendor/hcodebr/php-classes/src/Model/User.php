@@ -41,7 +41,6 @@ class User extends Model {
 			throw new \Exception("Usuário Inexistente ou Senha Inválida.");
 		}
 
-
 	}
 
 	public static function verifyLogin($inadmin = true)
@@ -70,6 +69,14 @@ class User extends Model {
 
 	}
 
+	public static function listAll()
+	{
+
+		$sql = new Sql();
+
+		return $sql->select("SELECT * FROM tb_users a INNER JOIN tb_persons b USING(idperson) ORDER BY b.desperson");
+
+	}
 
 }
 
