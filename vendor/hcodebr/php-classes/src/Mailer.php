@@ -7,7 +7,7 @@ use Rain\Tpl;
 class Mailer {
 
 	const USERNAME = "carlos.r.borzi@gmail.com";
-	const PASSWORD = "<?password?>";
+	const PASSWORD = "Spazio182";
 	const NAME_FROM = "Hcode Store";
 
 	private $mail;
@@ -16,7 +16,7 @@ class Mailer {
 	{
 
 		$config = array(
-			"tpl_dir"       => $_SERVER["DOCUMENT_ROOT"]."/views/email",
+			"tpl_dir"       => $_SERVER["DOCUMENT_ROOT"]."/views/email/",
 			"cache_dir"     => $_SERVER["DOCUMENT_ROOT"]."/views-cache/",
 			"debug"         => false // set to false to improve the speed
 		);
@@ -32,7 +32,7 @@ class Mailer {
 		$html = $tpl->draw($tplName, true);
 
 		//Create a new PHPMailer instance
-		$this->$mail = new \PHPMailer;
+		$this->mail = new \PHPMailer;
 
 		$this->mail->SMTPOptions = array(
 		    'ssl' => array(
